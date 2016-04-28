@@ -1,0 +1,11 @@
+[alias]
+	trav = !zsh -ic git-trav
+[color]
+	ui = auto
+[core]
+	editor = nvim
+[push]
+	default = matching
+[user]
+	name = Christopher König
+	email = criss@paars.de

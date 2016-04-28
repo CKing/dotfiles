@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+set -e
+
+# make sure we are on a debian like system
+if [ ! -f /etc/debian_version ]; then
+	echo Please make sure you are running debian or one of its derivatives
+	exit 1
+fi
+
+# prepare
+if ! sudo -v; then
+	echo Please make sure you can execute and athenticate with sudo
+	exit 1
+fi
+
+CONFIG="install.conf.yaml"
+DOTBOT_DIR="dotbot"
+
+DOTBOT_BIN="bin/dotbot"
+BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+cd "${BASEDIR}"
+git submodule update --init --recursive "${DOTBOT_DIR}"
+
+"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" "${@}"
+
+# change default shell to zsh
+sudo chsh -s /usr/bin/zsh $USER
