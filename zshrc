@@ -1,3 +1,7 @@
+# putty fucks up.
+bindkey '\e[1~' beginning-of-line
+bindkey '\e[4~' end-of-line
+
 # no c-s/c-q output freezing
 setopt noflowcontrol
 # allow expansion in prompts
