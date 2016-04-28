@@ -8,12 +8,6 @@ if [ ! -f /etc/debian_version ]; then
 	exit 1
 fi
 
-# prepare
-if ! sudo -v; then
-	echo Please make sure you can execute and athenticate with sudo
-	exit 1
-fi
-
 CONFIG="install.conf.yaml"
 DOTBOT_DIR="dotbot"
 
@@ -23,6 +17,9 @@ BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "${BASEDIR}"
 git submodule update --init --recursive "${DOTBOT_DIR}"
 
+if sudo -v; then
+	"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" "root.${@}"
+fi
 "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" "${@}"
 
 # change default shell to zsh
