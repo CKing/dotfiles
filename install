@@ -17,10 +17,11 @@ BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "${BASEDIR}"
 git submodule update --init --recursive "${DOTBOT_DIR}"
 
-if sudo -v; then
+if sudo -v >/dev/null 2>/dev/null; then
 	"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" "root.${@}"
 fi
 "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" "${@}"
 
 # change default shell to zsh
-sudo chsh -s /usr/bin/zsh $USER
+sudo chsh -s /usr/bin/zsh $USER >/dev/null 2>/dev/null
+nvim -c PlugInstall\|q! >/dev/null 2>/dev/null
