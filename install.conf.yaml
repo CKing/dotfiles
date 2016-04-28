@@ -4,7 +4,7 @@
     - [sudo apt-get -y install software-properties-common, Installing software properties]
     - ["sudo add-apt-repository -y ppa:neovim-ppa/unstable", Adding neovim repo]
     - [sudo apt-get -y update, Updating software packages]
-    - [sudo apt-get -y install zsh neovim command-not-found build-essential python3-pip, Installing software packages]
+    - [sudo apt-get -y install zsh neovim command-not-found build-essential python3-pip silversearcher-ag, Installing software packages]
     - [pip3 install neovim, Installing python packages]
 - link:
     ~/.bin: bin
