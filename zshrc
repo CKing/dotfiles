@@ -75,6 +75,9 @@ source ~/.zgen/zgen.zsh
 if ! zgen saved; then
 	echo Creating zgen startup file
 
+	# 256 colors??
+	zgen load chrissicool/zsh-256color
+
 	# async command execution, used by pure
 	zgen load mafredri/zsh-async
 
