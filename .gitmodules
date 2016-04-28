@@ -4,6 +4,3 @@
 [submodule "zgen"]
 	path = zgen
 	url = https://github.com/tarjoilija/zgen
-[submodule "vim-plug"]
-	path = vim-plug
-	url = https://github.com/junegunn/vim-plug.git

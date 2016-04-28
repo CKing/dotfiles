@@ -12,7 +12,3 @@
     ~/.config/nvim:
         path: config/nvim
         create: true
-    ~/.config/nvim/autoload/plug.vim:
-        path: vim-plug/plug.vim
-        create: true
-        force: true
