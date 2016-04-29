@@ -6,6 +6,7 @@
 
     ~/.zgen: zgen
     ~/.zshrc: zshrc
+    ~/.zbase16: base16-shell/base16-default.dark.sh
 
     ~/.gitconfig: gitconfig
 

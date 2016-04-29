@@ -60,6 +60,8 @@ setopt pushd_ignore_dups
 # * shouldn't match dotfiles. ever.
 setopt noglobdots
 
+source $HOME/.zbase16
+
 path+=("$HOME/.bin")
 export PATH
 
