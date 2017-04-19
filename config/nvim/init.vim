@@ -36,7 +36,7 @@ tnoremap <C-a><Esc> <C-\><C-n> "escape terminal with <C-a><Esc>
 
 set background=dark
 let base16colorspace=256
-colorscheme base16-default " awesome colorscheme
+colorscheme base16-default-dark " awesome colorscheme
 syntax enable           " enable syntax processing
 
 set tabstop=4       " number of visual spaces per TAB
