@@ -62,6 +62,9 @@ setopt noglobdots
 source $HOME/.zbase16
 
 path+=("$HOME/.bin")
+if [ -d $HOME/.yarn/bin ]; then
+	path+=("$HOME/.yarn/bin")
+fi
 export PATH
 
 if [[ -s '/etc/zsh_command_not_found' ]]; then
@@ -98,6 +101,11 @@ if ! zgen saved; then
 	zgen load b4b4r07/enhancd
 	zgen load b4b4r07/emoji-cli
 	zgen load zsh-users/zsh-completions
+
+	# programmin language version managers
+	zgen load cswl/zsh-rbenv
+	zgen load lukechilds/zsh-nvm
+
 
 	# command highlighting
 	zgen load zsh-users/zsh-syntax-highlighting
