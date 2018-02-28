@@ -1,5 +1,24 @@
 [alias]
 	trav = !zsh -ic git-trav
+	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+	ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+	l = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+	lr = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
+	lg = log --graph --oneline
+	cp = cherry-pick
+	st = status -s
+	s = status -sb
+	cl = clone
+	c = commit
+	co = checkout
+	br = branch
+	diff = diff --word-diff
+	dc = diff --cached
+	amend = commit --amend
+	ci = commit --interactive
+	a = add -p
+[format]
+	pretty = "%H %ci %ce %ae %d %s"
 [color]
 	ui = auto
 [core]
