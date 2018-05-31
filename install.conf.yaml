@@ -1,8 +1,13 @@
 - clean: ['~']
+
 - shell:
     - [git submodule update --init --recursive, Installing submodules]
+
 - link:
-    ~/.bin: bin
+    ~/.bin:
+        path: bin/*
+        glob: true
+        relink: true
 
     ~/.zgen: zgen
     ~/.zshrc: zshrc
