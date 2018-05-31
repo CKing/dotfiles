@@ -65,6 +65,9 @@ path+=("$HOME/.bin")
 if [ -d $HOME/.yarn/bin ]; then
 	path+=("$HOME/.yarn/bin")
 fi
+if [ -d $HOME//bin ]; then
+	path+=("$HOME/bin")
+fi
 export PATH
 
 if [[ -s '/etc/zsh_command_not_found' ]]; then
@@ -112,4 +115,8 @@ if ! zgen saved; then
 	zgen load zsh-users/zsh-syntax-highlighting
 
 	zgen save
+fi
+
+if [ -f $HOME/.localzshrc ]; then
+	source $HOME/.localzshrc
 fi
