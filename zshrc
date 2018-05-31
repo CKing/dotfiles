@@ -111,8 +111,6 @@ if ! zgen saved; then
 	# programmin language version managers
 	zgen load cswl/zsh-rbenv
 	zgen load lukechilds/zsh-nvm
-	zgen load twang817/zsh-gvm
-
 
 	# command highlighting
 	zgen load zsh-users/zsh-syntax-highlighting
