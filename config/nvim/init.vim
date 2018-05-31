@@ -4,8 +4,13 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'hkupty/nvimux'
 	Plug 'ctrlpvim/ctrlp.vim'
 	Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
+	Plug 'vim-airline/vim-airline-themes'
 call plug#end()
+
+if filereadable(expand("~/.vimrc_background"))
+	let base16colorspace=256
+	source ~/.vimrc_background
+endif
 
 "nvimux
 let g:nvimux_prefix='<C-a>' "change prefix to <C-a>
@@ -114,9 +119,9 @@ map <c-space> ?
 
 " return to last edit position when opening files (You want this!)
 autocmd BufReadPost *
-     \ if line("'\"") > 0 && line("'\"") <= line("$") |
-     \   exe "normal! g`\"" |
-     \ endif
+	 \ if line("'\"") > 0 && line("'\"") <= line("$") |
+	 \   exe "normal! g`\"" |
+	 \ endif
 " Remember info about open buffers on close
 set viminfo^=%
 
@@ -134,10 +139,10 @@ noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 " Returns true if paste mode is enabled
 function! HasPaste()
-    if &paste
-        return 'PASTE MODE  '
-    en
-    return ''
+	if &paste
+		return 'PASTE MODE  '
+	en
+	return ''
 endfunction
 
 
@@ -160,10 +165,10 @@ set gdefault            " Use 'g' flag by default with :s/foo/bar/.
 " Relative numbering
 function! NumberToggle()
   if(&relativenumber == 1)
-    set nornu
-    set number
+	set nornu
+	set number
   else
-    set rnu
+	set rnu
   endif
 endfunc
 
