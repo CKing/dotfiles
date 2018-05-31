@@ -8,6 +8,7 @@
         path: bin/*
         glob: true
         relink: true
+        create: true
 
     ~/.zgen: zgen
     ~/.zshrc: zshrc
