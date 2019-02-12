@@ -23,5 +23,5 @@ fi
 "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" "${@}"
 
 # change default shell to zsh
-nvim -c "PlugInstall|q|q"
+nvim -es -c "PlugInstall|q|q"
 sudo chsh -s /usr/bin/zsh $USER >/dev/null 2>/dev/null
