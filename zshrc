@@ -71,6 +71,12 @@ fi
 if [ -d $HOME//bin ]; then
 	path+=("$HOME/bin")
 fi
+if [ -d $HOME//go//bin ]; then
+	path+=("$HOME/go/bin")
+fi
+if [ -d //snap//bin ]; then
+	path+=("/snap/bin")
+fi
 export PATH
 
 if [[ -s '/etc/zsh_command_not_found' ]]; then
@@ -109,8 +115,7 @@ if ! zgen saved; then
 	zgen load zsh-users/zsh-completions
 
 	# programmin language version managers
-	zgen load cswl/zsh-rbenv
-	zgen load lukechilds/zsh-nvm
+	zgen load kiurchv/asdf.plugin.zsh
 
 	# command highlighting
 	zgen load zsh-users/zsh-syntax-highlighting
