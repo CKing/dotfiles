@@ -1,0 +1,65 @@
+configuration {
+	modi: "window,drun,run,ssh,ws:~/.config/rofi/i3_switch_workspace.sh,kill:~/.config/rofi/kill.sh,combi";
+/*	width: 25;*/
+	lines: 5;
+	columns: 1;
+	font: "NovaMono 12";
+/*	bw: 1;*/
+	location: 0;
+	padding: 300;
+/*	yoffset: 0;*/
+/*	xoffset: 0;*/
+/*	fixed-num-lines: true;*/
+	show-icons: true;
+	terminal: "rofi-sensible-terminal";
+/*	ssh-client: "ssh";*/
+/*	ssh-command: "{terminal} -e {ssh-client} {host}";*/
+/*	run-command: "{cmd}";*/
+/*	run-list-command: "";*/
+/*	run-shell-command: "{terminal} -e {cmd}";*/
+/*	window-command: "xkill -id {window}";*/
+/*	window-match-fields: "all";*/
+/*	drun-icon-theme: ;*/
+/*	drun-match-fields: "name,generic,exec,categories";*/
+/*	disable-history: false;*/
+	sort: true;
+/*	levenshtein-sort: false;*/
+/*	case-sensitive: false;*/
+/*	cycle: true;*/
+	sidebar-mode: true;
+/*	eh: 1;*/
+	auto-select: true;
+/*	parse-hosts: false;*/
+/*	parse-known-hosts: true;*/
+	combi-modi: "window,drun,run";
+	matching: "fuzzy";
+/*	tokenize: true;*/
+/*	m: "-5";*/
+/*	line-margin: 2;*/
+/*	line-padding: 1;*/
+/*	filter: ;*/
+/*	separator-style: "dash";*/
+/*	hide-scrollbar: false;*/
+	fullscreen: true;
+/*	fake-transparency: false;*/
+/*	dpi: -1;*/
+/*	threads: 0;*/
+/*	scrollbar-width: 8;*/
+	scroll-method: 0;
+/*	fake-background: "screenshot";*/
+/*	window-format: "{w}    {i}{c}   {t}";*/
+/*	click-to-exit: true;*/
+	show-match: true;
+	theme: "purple";
+/*	color-normal: ;*/
+/*	color-urgent: ;*/
+/*	color-active: ;*/
+/*	color-window: ;*/
+/*	max-history-size: 25;*/
+/*	combi-hide-mode-prefix: false;*/
+/*	pid: "/run/user/1000/rofi.pid";*/
+/*	display-window: ;*/
+/*	display-run: ;*/
+/*	display-ssh: ;*/
+/*	display-drun: ;*/
+}

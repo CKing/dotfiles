@@ -18,6 +18,14 @@
 
     ~/.gitconfig: gitconfig
 
-    ~/.config/nvim:
-        path: config/nvim
+    ~/.config:
+        path: config/*
+        glob: true
+        relink: true
+        create: true
+
+    ~/.local/share/fonts:
+        path: local/share/fonts/*
+        glob: true
+        relink: true
         create: true
