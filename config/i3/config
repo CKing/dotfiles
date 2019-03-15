@@ -87,12 +87,12 @@ bindsym $mod+a focus parent
 set $ws1 "1: Main"
 set $ws2 "2: Webs"
 set $ws3 "3: Devs"
-set $ws4 "4"
+set $ws4 "4: Games"
 set $ws5 "5: Misc"
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
-set $ws9 "9"
+set $ws9 "9: IM"
 set $ws10 "10: Music"
 
 # switch to workspace
@@ -162,11 +162,11 @@ bindsym XF86AudioPrev exec playerctl previous
 focus_follows_mouse no
 mouse_warping none
 
-exec_always ~/.bin/polybar i3
-exec_always feh --bg-fill --randomize $(xdg-user-dir PICTURES)/Wallpaper
-exec setxkbmap de nodeadkeys -option compose:rctrl
-exec xset dpms 0 0 0
-exec compton -f
+exec_always --no-startup-id feh --bg-fill --randomize $(xdg-user-dir PICTURES)/Wallpaper
+exec --no-startup-id ~/.bin/polybar i3
+exec --no-startup-id setxkbmap de nodeadkeys -option compose:rctrl
+exec --no-startup-id xset dpms 0 0 0
+exec --no-startup-id compton -f
 
 set $base00 #151515
 set $base01 #202020
@@ -193,3 +193,9 @@ client.unfocused        $base02 $base02    $base03 $base0F
 client.urgent           $base02 $base08    $base00 $base0F
 
 assign [class="Firefox"] $ws2
+assign [class="TelegramDesktop"] $ws9
+assign [class="Steam"] $ws4
+for_window [class="Steam" title="Friends List"] floating enable
+assign [class="Code"] $ws3
+assign [class="Dino-im"] $ws9
+assign [class="discordinjections-loader"] $ws9
