@@ -3,10 +3,28 @@
 set -e
 
 # make sure we are on a debian like system
-if [ ! -f /etc/debian_version ]; then
-	echo Please make sure you are running debian or one of its derivatives
-	exit 1
+SKIP_INSTALL=1
+
+if [ -f /etc/debian_version ]; then
+        SKIP_INSTALL=0
 fi
+while getopts "n" opt; do
+  case $opt in
+    n)
+      SKIP_INSTALL=1
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      exit 1
+      ;;
+    :)
+      echo "Option -$OPTARG requires an argument." >&2
+      exit 1
+      ;;
+  esac
+done
+
+
 
 CONFIG="install.conf.yaml"
 DOTBOT_DIR="dotbot"
@@ -17,10 +35,10 @@ BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "${BASEDIR}"
 git submodule update --init --recursive "${DOTBOT_DIR}"
 
-if sudo -v >/dev/null 2>/dev/null; then
-	"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "root.${CONFIG}" "${@}"
+if [ SKIP_INSTALL -eq 0 -a sudo -v >/dev/null 2>/dev/null ]; then
+	"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "root.${CONFIG}"
 fi
-"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" "${@}"
+"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}"
 
 # change default shell to zsh
 nvim -es -c "PlugInstall|q|q"
