@@ -1,6 +1,10 @@
 SAVEHIST=5000
 HISTFILE=~/.zsh_history
 
+# autoload compinit. not by default on arch it seems
+autoload -Uz compinit
+compinit
+
 # no c-s/c-q output freezing
 setopt noflowcontrol
 # allow expansion in prompts
