@@ -1,0 +1,105 @@
+{
+    "layer": "top", // Waybar at top layer
+    // Choose the order of the modules
+    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-center": ["sway/window"],
+    "modules-right": ["custom/pape", "pulseaudio", "network", "cpu", "memory", "temperature", "battery", "clock", "tray"],
+    // Modules configuration
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "format": " {icon} ",
+        "format-icons": {
+            "1: Main": "",
+            "2: Webs": "",
+            "3: Devs": "",
+            "4: Games": "",
+            "5: Misc": "",
+            "6: Weeb": "",
+            // unkown
+            // "7": "",
+            "8: DL": "",
+            "9: IM": "",
+            "10: Music": "",
+            "urgent": "",
+            "focused": "",
+            "default": ""
+        }
+    },
+    "sway/mode": {
+        "format": "{} "
+    },
+    "sway/window": {
+    	"format": " {}"
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10
+    },
+    "clock": {
+        "tooltip-format": "{:%Y-%m-%d | %H:%M}",
+        "format": "{:%H:%M:%S} ",
+        "interval": 1,
+        "format-alt": "{:%Y-%m-%d} ",
+        "on-click-right": "wl-copy $(date '+%Y-%m-%d %T')"
+    },
+    "cpu": {
+        "format": "{usage}% ",
+        "on-click": "alacritty -e htop"
+    },
+    "memory": {
+        "format": "{}% "
+    },
+    "temperature": {
+        "thermal-zone": "thermal_zone0",
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        "format-critical": "{temperatureC}°C ",
+        "format": "{temperatureC}°C "
+    },
+    "battery": {
+        "states": {
+            // "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        // "format-good": "", // An empty format will hide the module
+        "format-full": "{icon}",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "network": {
+        "format-wifi": "{ipaddr} ({signalStrength}%) ",
+        "format-ethernet": "{ipaddr} ",
+        "format-disconnected": "Disconnected ⚠",
+        "on-click": "wl-copy $(ip address show up scope global | grep inet | head -n1 | cut -d/ -f 1 | tr -d [:space:] | cut -c5-)",
+        "on-click-right": "wl-copy $(ip address show up scope global | grep inet6 | head -n1 | cut -d/ -f 1 | tr -d [:space:] | cut -c6-)"
+    },
+    "pulseaudio": {
+        "scroll-step": 5,
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon}",
+        "format-muted": "",
+        "format-icons": {
+            "headphones": "",
+            "handsfree": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+    "custom/pape": {
+    	"format": "",
+    	"on-click": "env XDG_CURRENT_DESKTOP=sway setrandom $(xdg-user-dir PICTURES)/Wallpaper"
+    }
+}
