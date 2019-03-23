@@ -197,10 +197,11 @@ assign [class="TelegramDesktop"] $ws9
 assign [class="Steam"] $ws4
 for_window [class="Steam" title="Friends List"] floating enable
 assign [class="Code"] $ws3
-assign [class="Dino-im"] $ws9
+assign [class="Gajim"] $ws9
 assign [class="discordinjections-loader"] $ws9
 assign [class="qBittorrent"] $ws8
 assign [class="Syncplay"] $ws6
 assign [class="mpv"] $ws6
+for_window [class="Plank"] floating enable
 
 exec --no-startup-id ~/.bin/autostart

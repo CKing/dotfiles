@@ -2,29 +2,59 @@
 
 set -e
 
-# make sure we are on a debian like system
-SKIP_INSTALL=1
+SKIP_INSTALL=0
+INSTALL_ENV=
+ENV_SOURCE=
 
-if [ -f /etc/debian_version ]; then
-        SKIP_INSTALL=0
+if [ -f /etc/lsb-release ]; then 
+	source /etc/lsb-release
+	if [ -n $DISTRIB_ID ]; then
+		INSTALL_ENV=${DISTRIB_ID,,}
+		ENV_SOURCE="lsb-release"
+	fi
 fi
-while getopts "n" opt; do
+if [ -f /etc/os-release ]; then
+	source /etc/os-release
+	if [ -n $ID ]; then 
+		INSTALL_ENV=${ID,,}
+		ENV_SOURCE="os-release"
+	fi
+fi
+
+# TODO: fix ubuntu <=> debian mapping
+case $INSTALL_ENV in
+*ubuntu*)
+	INSTALL_ENV=debian
+	;;
+esac
+
+while getopts "nd:" opt; do
   case $opt in
     n)
-      SKIP_INSTALL=1
-      ;;
-    \?)
-      echo "Invalid option: -$OPTARG" >&2
-      exit 1
-      ;;
-    :)
-      echo "Option -$OPTARG requires an argument." >&2
-      exit 1
-      ;;
-  esac
+		SKIP_INSTALL=1
+		;;
+	d)
+		INSTALL_ENV=$OPTARG
+		ENV_SOURCE=cli
+		;;
+	\?)
+		echo "Invalid option: -$OPTARG" >&2
+		exit 1
+		;;
+	:)
+		echo "Option -$OPTARG requires an argument." >&2
+		exit 1
+		;;
+	esac
 done
 
+if [ -z $INSTALL_ENV ]; then
+	SKIP_INSTALL=1
+fi
 
+if [ $SKIP_INSTALL -eq 0 ]; then
+	echo "Trying install environment <$INSTALL_ENV>, detected from <$ENV_SOURCE>"
+fi
 
 CONFIG="install.conf.yaml"
 DOTBOT_DIR="dotbot"
@@ -36,8 +66,12 @@ cd "${BASEDIR}"
 git submodule update --init --recursive "${DOTBOT_DIR}"
 
 if [ $SKIP_INSTALL -eq 0 ]; then
-	if sudo -v >/dev/null 2>/dev/null; then
-		"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "root.${CONFIG}"
+	if [ ! -f ${BASEDIR}/distro/${INSTALL_ENV}.${CONFIG} ]; then
+		echo "!! failed to find install script, skipping !!"
+	else 
+		if sudo -v >/dev/null 2>/dev/null; then
+			"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "distro/${INSTALL_ENV}.${CONFIG}"
+		fi
 	fi
 fi
 "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}"

@@ -1,0 +1,25 @@
+- shell:
+    - 
+        command: >
+            which yay >/dev/null 2>&1 ||
+            sudo pacman -Sy --noconfirm --needed go git base-devel &&
+            git clone --depth 1 https://aur.archlinux.org/yay.git /tmp/yay &&
+            cd /tmp/yay &&
+            makepkg -si ||
+            true
+        description: Install yay if needed
+    -
+        command: which yay
+        description: Check for successful yay install
+    -
+        command: >
+            yay -Sqy --noconfirm --needed
+            xorg-server-xwayland bemenu alacritty
+            grim slurp playerctl mako
+            pulseaudio wallutils wf-recorder-git
+            gajim firefox mpv imv xarchiver
+            thunar thunar-archive-plugin thunar-media-tags-plugin
+            thunar-volman neovim micro zsh command-not-found 
+            moka-icon-theme sway the_silver_searcher
+        description: Install all required deps
+        stdout: true
