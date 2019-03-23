@@ -21,6 +21,6 @@
             thunar thunar-archive-plugin thunar-media-tags-plugin
             thunar-volman neovim micro zsh command-not-found 
             moka-icon-theme sway the_silver_searcher
-            ttf-monapo keychain
+            ttf-monapo keychain wl-clipboard-x11 gotop
         description: Install all required deps
         stdout: true
