@@ -171,3 +171,11 @@ fi
 if [ -f $HOME/.localzshrc ]; then
 	source $HOME/.localzshrc
 fi
+
+eval $(keychain --eval 2>/dev/null)
+
+for possiblekey in ${HOME}/.ssh/id_*; do
+	if [ $(echo "$possiblekey" | grep -q ".pub" ; echo $?) -eq 1 ]; then
+		keychain "$possiblekey" 2>/dev/null
+	fi
+done
