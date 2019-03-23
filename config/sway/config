@@ -1,10 +1,10 @@
 input * xkb_layout "de,us"
 input * xkb_variant "nodeadkeys,"
-#input * xkb_options ""
+input * xkb_numlock 1
 
 set $mod Mod4
 
-font pango:Nova Round Book 10
+font Nova Round Book 10
 bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+q kill
 
@@ -98,6 +98,7 @@ bindsym XF86AudioPrev exec playerctl previous
 
 focus_follows_mouse no
 mouse_warping none
+gaps inner 25
 
 exec_always --no-startup-id env XDG_CURRENT_DESKTOP=sway setrandom $(xdg-user-dir PICTURES)/Wallpaper
 exec --no-startup-id pulseaudio --start
@@ -107,6 +108,12 @@ bindsym Print exec grim -c $(xdg-user-dir PICTURES)/Screenshots/$(date +'%Y-%m-%
 bindsym Shift+Print exec killall wf-recorder || wf-recorder -g "$(slurp -d)" -f $(xdg-user-dir PICTURES)/Screenshots/$(date +'%Y-%m-%d-%H%M%S.mkv')
 bindsym Alt+Print exec grim -c -g "$(~/bin/swaywin)" $(xdg-user-dir PICTURES)/Screenshots/$(date +'%Y-%m-%d-%H%M%S.png')
 bindsym Ctrl+Print exec grim -c -g "$(slurp -d)" $(xdg-user-dir PICTURES)/Screenshots/$(date +'%Y-%m-%d-%H%M%S.png')
+
+#     .class				border		back		text		indicator	child
+client.focused 				#151515a0	#151515a0	#f5f5f5		#151515a0	#151515a0
+client.focused_inactive		#151515a0	#151515a0	#d0d0d0		#151515a0		#151515a0
+client.unfocused 			#15151580	#15151580	#d0d0d0		#15151580		#15151580
+client.urgent	 			#151515f0	#151515f0	#e1a3ee		#151515f0		#151515f0
 
 assign [class="Firefox"] $ws2
 assign [class="TelegramDesktop"] $ws9
