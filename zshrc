@@ -154,12 +154,16 @@ if ! zgen saved; then
 	zgen load b4b4r07/enhancd
 	zgen load b4b4r07/emoji-cli
 	zgen load zsh-users/zsh-completions
+	zgen load oknowton/zsh-dwim
+	zgen load zsh-users/zaw
+	zgen load supercrabtree/k
 
 	# programmin language version managers
 	zgen load kiurchv/asdf.plugin.zsh
 
 	# command highlighting
 	zgen load zsh-users/zsh-syntax-highlighting
+	zgen load zsh-users/zsh-history-substring-search
 
 	zgen save
 fi
