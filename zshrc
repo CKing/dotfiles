@@ -156,7 +156,6 @@ if ! zgen saved; then
 	zgen load zsh-users/zsh-completions
 	zgen load oknowton/zsh-dwim
 	zgen load zsh-users/zaw
-	zgen load supercrabtree/k
 
 	# programmin language version managers
 	zgen load kiurchv/asdf.plugin.zsh
