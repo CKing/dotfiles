@@ -5,7 +5,7 @@ input * xkb_numlock 1
 set $mod Mod4
 
 font Nova Round Book 10
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec urxvt
 bindsym $mod+Shift+q kill
 
 # rofi on wayland is... interesting, fall back to wayland dmenu for now
@@ -43,6 +43,13 @@ set $ws7 "7"
 set $ws8 "8: DL"
 set $ws9 "9: IM"
 set $ws10 "10: Music"
+
+
+workspace $ws1 output DVI-D-1
+workspace $ws2 output VGA-1
+workspace $ws3 output DVI-D-1
+workspace $ws8 output VGA-1
+workspace $ws9 output VGA-1
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -96,9 +103,9 @@ bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
-focus_follows_mouse no
+focus_follows_mouse yes
 mouse_warping none
-gaps inner 25
+gaps inner 5
 
 exec_always --no-startup-id env XDG_CURRENT_DESKTOP=sway setrandom $(xdg-user-dir PICTURES)/Wallpaper
 exec --no-startup-id pulseaudio --start
