@@ -28,3 +28,6 @@
 [user]
 	name = Christopher König
 	email = criss@paars.de
+	signingkey = EE323D2723E8A2B0
+[commit]
+	gpgsign = true
