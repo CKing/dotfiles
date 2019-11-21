@@ -1,0 +1,3 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =1
+let g:netrw_dirhist_1='/home/criss/.local/share/Steam/compatibilitytools.d/Proton-4.15-GE-1'

@@ -1,0 +1,78 @@
+// vim:ts=4:sw=4:et
+{
+    "border": "normal",
+    "current_border_width": 2,
+    "floating": "auto_off",
+    "geometry": {
+       "height": 720,
+       "width": 1280,
+       "x": 200,
+       "y": 165
+    },
+    "name": "#xivlauncher - Discord",
+    "percent": 0.5,
+    "swallows": [
+       {
+       // "class": "^discord$",
+       // "instance": "^discord$",
+       // "title": "^\\#xivlauncher\\ \\-\\ Discord$",
+       // "window_role": "^browser\\-window$"
+       }
+    ],
+    "type": "con"
+}
+
+{
+    // splith split container with 2 children
+    "border": "normal",
+    "floating": "auto_off",
+    "layout": "splith",
+    "percent": 0.5,
+    "type": "con",
+    "nodes": [
+        {
+            "border": "normal",
+            "current_border_width": 2,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 1022,
+               "width": 213,
+               "x": 0,
+               "y": 0
+            },
+            "name": "Gajim",
+            "percent": 0.5,
+            "swallows": [
+               {
+               // "class": "^Gajim$",
+               // "instance": "^gajim$",
+               // "title": "^Gajim$",
+               // "window_role": "^roster$"
+               }
+            ],
+            "type": "con"
+        },
+        {
+            "border": "normal",
+            "current_border_width": 2,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 600,
+               "width": 800,
+               "x": 2240,
+               "y": 240
+            },
+            "name": "Telegram",
+            "percent": 0.5,
+            "swallows": [
+               {
+               // "class": "^TelegramDesktop$",
+               // "instance": "^telegram\\-desktop$",
+               // "title": "^Telegram$"
+               }
+            ],
+            "type": "con"
+        }
+    ]
+}
+
