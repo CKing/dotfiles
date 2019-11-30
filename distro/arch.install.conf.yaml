@@ -1,5 +1,5 @@
 - shell:
-    - 
+    -
         command: >
             which yay >/dev/null 2>&1 ||
             sudo pacman -Sy --noconfirm --needed go git base-devel &&
@@ -14,13 +14,17 @@
     -
         command: >
             yay -Sqy --noconfirm --needed
-            xorg-server-xwayland bemenu alacritty
-            grim slurp playerctl mako
-            pulseaudio wallutils wf-recorder-git
-            gajim firefox mpv imv xarchiver
-            thunar thunar-archive-plugin thunar-media-tags-plugin
-            thunar-volman neovim micro zsh command-not-found 
-            moka-icon-theme sway the_silver_searcher
-            ttf-monapo keychain wl-clipboard-x11 gotop
+            dmenu rofi maim slop playerctl dunst polybar xdotool
+            pulseaudio feh ffmpeg picom p7zip
+            alacritty gajim firefox mpv imv xarchiver cantata gimp krita qbittorrent
+            thunar thunar-archive-plugin thunar-media-tags-plugin thunar-volman
+            neovim micro zsh find-the-command jq
+            moka-icon-theme fzf
+            ttf-monapo adobe-source-code-pro-fonts adobe-source-han-sans-jp-fonts adobe-source-han-sans-otc-fonts adobe-source-sans-pro-fonts
+            noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra otf-fira-code otf-fira-mono otf-fira-sans otf-ipafont
+            ttf-dejavu ttf-droid ttf-fira-mono ttf-fira-sans ttf-font-awesome ttf-hack ttf-hanazono ttf-inconsolata ttf-koruri
+            ttf-liberation ttf-linux-libertine ttf-mac-fonts ttf-meslo ttf-monaco ttf-monapo ttf-ms-fonts ttf-symbola ttf-ubraille
+            keychain xclip gotop
+            lightdm mesa xorg-server
         description: Install all required deps
         stdout: true
