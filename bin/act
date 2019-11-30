@@ -1,0 +1,22 @@
+#!/bin/bash
+
+WINEDEBUG=-all WINEESYNC=1 protontricks -c "wine64 \"C:\\\\users\\\\steamuser\\\\ACT\\\\Advanced Combat Tracker.exe\" -portable" 39210 >/dev/null &
+
+echo "Waiting for ACT to finish initializing..."
+while ! nc -v -z 127.0.0.1 10501 >/dev/null 2>&1; do
+        echo Websocket not up, waiting...
+        sleep 10
+done
+
+echo "Launching hudkit..."
+for filename in /home/criss/.config/hudkit/*.json; do
+        echo "  - $filename"
+        /home/criss/.bin/hudkit $filename >/dev/null 2>&1 &
+done
+echo "Waiting for ACT to exit..."
+
+while nc -v -z 127.0.0.1 10501 >/dev/null 2>&1; do
+        sleep 10
+done
+
+killall hudkit

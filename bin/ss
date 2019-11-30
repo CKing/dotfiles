@@ -1,0 +1,27 @@
+#!/bin/bash
+
+i3-msg "mode default"
+
+OUT=$(xdg-user-dir PICTURES)/Screenshots/$(date +'%Y-%m-%d-%H%M%S.png')
+
+echo Creating Screenshot at $OUT
+echo Supplied flags: $*
+
+maim -B "$@" "$OUT"
+if [ ! $? ]; then
+        paplay /usr/share/sounds/freedesktop/stereo/message.oga
+        exit 1
+fi
+
+xclip -sel clip -t image/png "$OUT"
+
+link=$(/home/criss/.bin/ncc "$OUT")
+if [ $? ]; then
+        echo Shared at $link
+        echo -n $link | xclip -sel c
+        echo -n $link | xclip -sel p
+        paplay /usr/share/sounds/freedesktop/stereo/screen-capture.oga
+else
+        paplay /usr/share/sounds/freedesktop/stereo/dialog-error.oga
+        exit 5
+fi
