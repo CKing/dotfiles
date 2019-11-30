@@ -6,6 +6,7 @@ floating_modifier $mod
 bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+q kill
 bindsym $mod+d exec rofi -show combi
+bindsym $mod+Shift+d exec dmenu_run -i -p "$" -b
 
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
@@ -21,6 +22,7 @@ bindsym $mod+f fullscreen toggle
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
+bindsym $mod+x layout toggle stacking tabbed splitv splith
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
@@ -33,7 +35,7 @@ set $ws3 "3: Dev"
 set $ws4 "4: Games"
 set $ws5 "5: Misc"
 set $ws6 "6: Weeb"
-set $ws7 "7"
+set $ws7 "7: Art"
 set $ws8 "8: DL"
 set $ws9 "9: Social"
 set $ws10 "10: Music"
@@ -63,8 +65,17 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 #workspace $ws1 output $ps2
 workspace $ws2 output $ps3
+workspace $ws4 output $ps2
 workspace $ws9 output $ps1
 workspace $ws10 output $ps1
+bindsym $mod+Shift+y move workspace to output left
+bindsym $mod+Shift+x move workspace to output right
+bindcode $mod+20 scratchpad show
+bindcode $mod+Shift+20 move scratchpad
+
+exec --no-startup-id i3-msg 'workspace $ws2; layout tabbed'
+exec --no-startup-id i3-msg 'workspace $ws9; layout splitv; append_layout ~/.config/i3/workspace-9.json'
+exec --no-startup-id i3-msg 'workspace $ws1; move workspace to output $ps2'
 
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
@@ -72,12 +83,23 @@ bindsym $mod+l mode "$mode_system"
 set $mode_system (l)ogout, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
         bindsym l exec --no-startup-id i3-msg exit
-        bindsym h exec --no-startup-id systemct hibernate
+        bindsym h exec --no-startup-id systemctl hibernate
         bindsym r exec --no-startup-id systemctl reboot
         bindsym Shift+s exec --no-startup-id systemctl poweroff
 
         bindsym Return mode "default"
         bindsym Escape mode "default"
+}
+
+bindsym $mod+Print mode "print screen"
+mode "print screen" {
+        bindsym --release Print exec --no-startup-id ~/.bin/ss
+        bindsym --release a     exec --no-startup-id ~/.bin/ss -i $(xdotool getactivewindow)
+        bindsym --release s     exec --no-startup-id ~/.bin/ss -s
+        bindsym --release d     exec --no-startup-id ~/.bin/sv
+        bindsym $mod+Print mode "default"
+        bindsym Return mode "default"
+        bindsym Escape mode "default
 }
 
 mode "resize" {
@@ -94,24 +116,25 @@ bindsym $mod+r mode "resize"
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
-bindsym XF86AudioPlay exec playerctl play
-bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPause exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 focus_follows_mouse no
 mouse_warping none
 
-exec_always --no-startup-id polybar i3
-exec_always --no-startup-id polybar left
-exec_always --no-startup-id polybar right
+exec --no-startup-id polybar i3
+exec --no-startup-id polybar left
+exec --no-startup-id polybar right
 exec --no-startup-id setxkbmap de nodeadkeys -option compose:rctrl
 exec_always --no-startup-id dunst -conf ~/.config/dunst/dunstrc &
-exec_always --no-startup-id pulseaudio --start
+exec_always --no-startup-id systemctl --user start pulseaudio
 exec_always --no-startup-id picom &
 exec --no-startup-id bgchd -dir $(xdg-user-dir PICTURES)/Wallpaper -intv 15m -bcknd feh -rpl
 exec --no-startup-id ~/.screenlayout/tripple.sh
 exec --no-startup-id mopidy &
+exec --no-startup-id numlockx on
 
 assign [class="firefox"] $ws2
 assign [class="TelegramDesktop"] $ws9
@@ -125,12 +148,6 @@ assign [class="Syncplay"] $ws6
 assign [class="mpv"] $ws6
 for_window [class="Plank"] floating enable
 assign [class="cantata"] $ws10
-
-exec --no-startup-id "i3-msg 'workspace 9; append_layout /home/criss/.i3/workspace-9.json'"
-
-bindsym Print exec ~/.bin/ss > ~/ss
-bindsym Mod1+Print exec ~/.bin/ss -i $(xdotool getactivewindow)
-bindsym Ctrl+Print exec ~/.bin/ss -s
 
 #     .class				border		back		text		indicator	child
 client.focused 				#151515a0	#151515a0	#f5f5f5		#151515a0	#151515a0
